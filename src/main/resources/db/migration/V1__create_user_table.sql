@@ -7,6 +7,14 @@ CREATE TABLE IF NOT EXISTS user (
     role VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS role (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+    );
+
+INSERT INTO role (name) VALUES
+    ('USER'),
+    ('ADMIN');
 
 
 
