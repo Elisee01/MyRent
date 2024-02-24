@@ -1,7 +1,7 @@
-package com.bakanna.assurance.service.develop.filter;
+package com.bakanna.assurance.service.api.filter;
 
-import com.bakanna.assurance.service.develop.service.JwtService;
-import com.bakanna.assurance.service.develop.service.UserDetailsServiceImp;
+import com.bakanna.assurance.service.api.service.JwtService;
+import com.bakanna.assurance.service.api.service.UserDetailsServiceImp;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,18 +16,18 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-// This class to validate the generated jwt token
+
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsServiceImp userDetailsService;
 
-
     public JwtAuthenticationFilter(JwtService jwtService, UserDetailsServiceImp userDetailsService) {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
     }
+
 
     @Override
     protected void doFilterInternal(
@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
-        if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if(authHeader == null || !authHeader.startsWith("Bearer")) {
             filterChain.doFilter(request,response);
             return;
         }
@@ -50,8 +50,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-
-            if(jwtService.isValid(token, userDetails)) {
+            if (jwtService.isValid(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
                 );
@@ -64,7 +63,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
-
-
     }
 }

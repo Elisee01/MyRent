@@ -1,11 +1,9 @@
-package com.bakanna.assurance.service.develop.repository;
+package com.bakanna.assurance.service.api.repository;
 
-import com.bakanna.assurance.service.develop.model.User;
+import com.bakanna.assurance.service.api.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-
     Optional<User> findByUsername(String username);
 }

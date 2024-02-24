@@ -1,8 +1,8 @@
-package com.bakanna.assurance.service.develop.controller;
+package com.bakanna.assurance.service.api.controller;
 
-import com.bakanna.assurance.service.develop.model.AuthenticationResponse;
-import com.bakanna.assurance.service.develop.model.User;
-import com.bakanna.assurance.service.develop.service.AuthenticationService;
+import com.bakanna.assurance.service.api.model.AuthenticationResponse;
+import com.bakanna.assurance.service.api.model.User;
+import com.bakanna.assurance.service.api.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +16,6 @@ public class AuthenticationController {
     public AuthenticationController(AuthenticationService authService) {
         this.authService = authService;
     }
-
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
