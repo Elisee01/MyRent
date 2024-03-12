@@ -1,6 +1,6 @@
 package com.bakanna.assurance.service.api.service;
 
-import com.bakanna.assurance.service.api.model.Partner;
+import com.bakanna.assurance.service.api.entity.Partner;
 import com.bakanna.assurance.service.api.repository.PartnerRepository;
 import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
